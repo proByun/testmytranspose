@@ -1,7 +1,6 @@
 import unittest
 import numpy as np
 import pandas as pd
-import torch
 from mytranspose import mytranspose
 
 class TestMyTranspose(unittest.TestCase):
@@ -12,5 +11,11 @@ class TestMyTranspose(unittest.TestCase):
         result = mytranspose(mat)
         np.testing.assert_array_equal(result, expected)
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_dataframe(self):
+        d = np.array([1, 2, 3, 4])
+        e = np.array(["red", "white", "red", np.nan])
+        f = np.array([True, True, True, False])
+        df = pd.DataFrame({"d": d, "e": e, "f": f})
+        expected = df.transpose()
+        result = mytranspose(df)
+        pd.testing.assert_frame_equal(result, expected)
