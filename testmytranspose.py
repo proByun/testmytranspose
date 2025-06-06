@@ -11,8 +11,17 @@ class TestMyTranspose(unittest.TestCase):
         result = mytranspose(mat)
         np.testing.assert_array_equal(result, expected)
 
+    def test_dataframe(self):
+        d = np.array([1, 2, 3, 4])
+        e = np.array(["red", "white", "red", np.nan])
+        f = np.array([True, True, True, False])
+        df = pd.DataFrame({"d": d, "e": e, "f": f})
+        expected = df.transpose()
+        result = mytranspose(df)
+        pd.testing.assert_frame_equal(result, expected)
+
     def test_vector(self):
         vec = np.array([1, 2, 3])
-        expected = np.array([1, 2, 3])  # 1D 벡터는 transpose 영향 없음
+        expected = np.array([1, 2, 3])
         result = mytranspose(vec)
         np.testing.assert_array_equal(result, expected)
