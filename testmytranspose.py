@@ -1,7 +1,6 @@
 import unittest
 import numpy as np
 import pandas as pd
-import torch
 from mytranspose import mytranspose
 
 class TestMyTranspose(unittest.TestCase):
@@ -12,5 +11,8 @@ class TestMyTranspose(unittest.TestCase):
         result = mytranspose(mat)
         np.testing.assert_array_equal(result, expected)
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_vector(self):
+        vec = np.array([1, 2, 3])
+        expected = np.array([1, 2, 3])  # 1D 벡터는 transpose 영향 없음
+        result = mytranspose(vec)
+        np.testing.assert_array_equal(result, expected)
