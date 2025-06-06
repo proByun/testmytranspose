@@ -19,3 +19,9 @@ class TestMyTranspose(unittest.TestCase):
         expected = df.transpose()
         result = mytranspose(df)
         pd.testing.assert_frame_equal(result, expected)
+
+    def test_vector(self):
+        vec = np.array([1, 2, 3])
+        expected = np.array([1, 2, 3])
+        result = mytranspose(vec)
+        np.testing.assert_array_equal(result, expected)
